@@ -1,0 +1,11 @@
+venv/
+
+.env
+
+.vscode
+
+vendor
+
+package*
+
+node_modules
