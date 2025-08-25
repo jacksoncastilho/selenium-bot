@@ -22,11 +22,67 @@ def attack():
 
         browser.get(args.url)
 
-        time.sleep(5)
+        botSteps(browser)
         
         browser.quit()
     except Exception as e:
         print(f"Error in attack: {e}")
+
+def botSteps(browser):
+        browser.find_element(By.LINK_TEXT, "About").click()
+
+        browser.find_element(By.LINK_TEXT, "Home").click()
+
+        previusElement = browser.find_element(By.ID, "controls-previus")
+        nextElement= browser.find_element(By.ID, "controls-next")
+
+        i=0
+        while i < 7:
+            if random.randint(1,2) == 1:
+                nextElement.click()
+            else:
+                previusElement.click()
+            i+=1
+
+        browser.find_element(By.LINK_TEXT, "Login").click()
+
+        time.sleep(1)
+
+        #signup(browser, 1)
+
+def signup(browser, times):
+    browser.find_element(By.LINK_TEXT, "Sign Up").click()
+    
+    i=0
+    while i < times:
+        browser.execute_script(f"document.querySelector('#username').value='{random.randint(1,999)}'")
+        browser.execute_script(f"document.querySelector('#password').value='changeme'")
+        browser.execute_script(f"document.querySelector('#confirm-password').value='changeme'")
+
+        solveCaptcha(browser)
+
+        i += 1
+
+def solveCaptcha(browser):
+    if args.version == 2:
+        clickCaptcha(browser)
+    else:
+        browser.find_element(By.XPATH, "//button[@type='submit']").click() 
+    
+    gRecaptchaResponse = ''
+
+    while gRecaptchaResponse == '':
+        gRecaptchaResponse = browser.execute_script("var elem = document.getElementById('g-recaptcha-response'); return elem ? elem.value : false;")
+        time.sleep(1)
+            
+    if(not gRecaptchaResponse):
+        print("Element 'g-recaptcha-response' not found!")
+        browser.quit()
+        exit()
+    
+    if args.version == 2:
+        browser.execute_script("document.querySelector('#submit').click()")
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-url', type=str, required=True, help='Target url. E.g: http://localhost/index.php')
