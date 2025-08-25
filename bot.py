@@ -20,7 +20,7 @@ def attack():
         else:
             browser = webdriver.Firefox()
 
-        browser.get(args.url)
+        browser.get(os.getenv('TARGET'))
 
         time.sleep(5)
         
@@ -29,8 +29,6 @@ def attack():
         print(f"Error in attack: {e}")
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-url', type=str, required=True, help='Target url. E.g: http://localhost/index.php')
-parser.add_argument('-v', '--version', type=int, default=2, choices=[2, 3], help='Specify which version to use, available options are 2 or 3 (default: 2)')
 parser.add_argument('-i', '--install', type=bool, default=False, help='Automatically download, install and configure the appropriate browser drivers (default: False)')
 parser.add_argument('-P', '--process', type=int, default=1, help="Number of processes to spawn (default: 1).")
 parser.add_argument('-d', '--delay', type=float, default=0.1, help="Delay between spawning processes in seconds (default: 0.1).")
