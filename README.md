@@ -25,6 +25,15 @@ Deactivate the virtual environment when finished:
 deactivate
 ```
 
+#### Environment File
+
+Copy the environment configuration file:
+
+```bash
+cp .env.example .env
+```
+
+Update `.env` with your project’s credentials and configurations.
 ## Reference
 https://www.selenium.dev/documentation/</br>
 https://www.browserstack.com/guide/python-selenium-webdriver-manager</br>
