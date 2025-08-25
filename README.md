@@ -25,6 +25,12 @@ Deactivate the virtual environment when finished:
 deactivate
 ```
 
+This repository is based on the webpage https://github.com/jacksoncastilho/simple-crud.git
+
+```
+cd /var/www/html && git clone -b recaptcha https://github.com/jacksoncastilho/simple-crud.git
+```
+
 ## Reference
 https://www.selenium.dev/documentation/</br>
 https://www.browserstack.com/guide/python-selenium-webdriver-manager</br>
