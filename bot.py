@@ -22,12 +22,14 @@ def attack():
 
         browser.get(os.getenv('TARGET'))
 
-        time.sleep(5)
+        steps()
         
         browser.quit()
     except Exception as e:
         print(f"Error in attack: {e}")
-
+def steps():
+    time.sleep(5)
+    
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--install', type=bool, default=False, help='Automatically download, install and configure the appropriate browser drivers (default: False)')
 parser.add_argument('-P', '--process', type=int, default=1, help="Number of processes to spawn (default: 1).")
